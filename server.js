@@ -84,8 +84,8 @@ io.on('connection', (socket) => {
     // Handle user disconnect, e.g., remove the user from the room
   });
 
-  socket.on('joinRoom', async (data) => {
-    const { roomId, username } = await data;
+  socket.on('joinRoom', (data) => {
+    const { roomId, username } =  data;
     //console.log(username)
     const room = rooms.find((r) => r.roomId === roomId);
     //console.log('socket buffer:', data)
