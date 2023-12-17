@@ -6,7 +6,7 @@ const http = require('node:http');
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
 const app = express();
-const server = http(app);
+const server = http.createServer(app);
 
 
 //const socket = io(`${process.env.VERCEL_URL}`, { transports: ['websocket'] });
@@ -15,7 +15,7 @@ const server = http(app);
 const io = new Server(server, {
   cors: {
     origin: 'https://typo-tester-phi.vercel.app/', // Replace with the origin of your React application
-    methods: ['GET', 'POST']
+    methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"]
   },
   allowEIO3: true,
 });
