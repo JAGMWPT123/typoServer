@@ -1,0 +1,16 @@
+{
+    "functions": {
+      "api/**/*.js": {
+        "runtime": "nodejs18.x"
+      }
+    },
+    "routes": [
+      { "src": "/api/.*", "dest": "/api/server.cjs" },
+      { "handle": "filesystem" }
+    ],
+    "builds": [
+      { "src": "public/**", "use": "@vercel/static" },
+      { "src": "api/**", "use": "@vercel/node" }
+    ]
+  }
+  
