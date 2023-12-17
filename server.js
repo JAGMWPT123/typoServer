@@ -27,6 +27,7 @@ const io = new Server(server, {
     origin: 'https://typo-tester-phi.vercel.app/', // Replace with the origin of your React application
     methods: ['GET', 'POST']
   },
+  allowEIO3: true,
 });
 const PORT = 5000; // Choose a suitable port
 
@@ -37,7 +38,7 @@ const corsOptions = {
   credentials: true,
   optionsSuccessStatus: 204,
 };
-app.use(cors({origin : '*'})); // Enable CORS for all routes
+app.use(cors); // Enable CORS for all routes
 
 const rooms = []; // Array to store room objects
 
