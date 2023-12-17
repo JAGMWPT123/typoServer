@@ -1,9 +1,9 @@
 {
     "routes": [
-      { "src": "/api/.*", "dest": "/api/server.cjs" },
+      { "src": "/*", "dest": "/server.cjs" },
       { "handle": "filesystem" }
     ],
     "builds": [
-      { "src": "api/**", "use": "@vercel/node" }
+      { "src": "/**", "use": "@vercel/node" }
     ]
   }
