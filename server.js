@@ -12,12 +12,12 @@ const app = express();
 const server = http.createServer();
 
 // Listen to the request event
-server.on('request', (request, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({
-    data: 'Hello World!',
-  }));
-});
+// server.on('request', (request, res) => {
+//   res.writeHead(200, { 'Content-Type': 'application/json' });
+//   res.end(JSON.stringify({
+//     data: 'Hello World!',
+//   }));
+// });
 
 //const socket = io(`${process.env.VERCEL_URL}`, { transports: ['websocket'] });
 
