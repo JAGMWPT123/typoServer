@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const http = require('https');
+const http = require('http');
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
 const app = express();
