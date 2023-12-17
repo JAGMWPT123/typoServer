@@ -12,7 +12,7 @@ const server = http.createServer(app);
 //const { io, updateChallengeState, userJoin } = setupWebSocket(server);
 const io = new Server(server, {
   cors: {
-    origin: true, // Replace with the origin of your React application
+    origin: '*', // Replace with the origin of your React application
     methods: ['GET', 'POST'],
     credentials: true,
   },
