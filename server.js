@@ -114,6 +114,7 @@ console.log('n-room :' , newRoom)
 app.get('/', (req, res) => {
   // Replace this with your actual data logic
   const data = { message: 'Server says hello' };
+  console.log(data)
   res.json(data);
 });
 
