@@ -3,9 +3,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
-const { setupWebSocket } = require('./socket.cjs');
+//const { setupWebSocket } = require('./socket.cjs');
 const app = express();
 const server = http.createServer(app);
+
+//const socket = io(`${process.env.VERCEL_URL}`, { transports: ['websocket'] });
+
 //const { io, updateChallengeState, userJoin } = setupWebSocket(server);
 const io = new Server(server, {
   cors: {
