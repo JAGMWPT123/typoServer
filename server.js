@@ -24,7 +24,7 @@ const server = http.createServer(app);
 //const { io, updateChallengeState, userJoin } = setupWebSocket(server);
 const io = new Server(server, {
   cors: {
-    origin: 'https://typo-tester-six.vercel.app/', // Replace with the origin of your React application
+    origin: 'https://typo-tester-phi.vercel.app/', // Replace with the origin of your React application
     methods: ['GET', 'POST']
   },
 });
@@ -41,6 +41,42 @@ app.use(cors({origin : '*'})); // Enable CORS for all routes
 
 const rooms = []; // Array to store room objects
 
+
+// // user websocket
+// setupWebSocket()
+io.on('connection', (socket) => {
+  //console.log(socket.time)
+  console.log('A user connected');
+
+  socket.on('userDisconnect', () => {
+    console.log('User disconnected');
+    // Handle user disconnect, e.g., remove the user from the room
+  });
+
+  socket.on('joinRoom', (data) => {
+    const { roomId, username } =  data;
+    //console.log(username)
+    const room = rooms.find((r) => r.roomId === roomId);
+    //console.log('socket buffer:', data)
+
+    if (room) {
+
+      room.users.push({ username, socketId: socket.id });
+
+      socket.join(roomId);
+      io.to(roomId).emit('userJoined', { username }); // Notify all users in the room
+      const rmusers = room.users
+      io.to(roomId).emit('users',{rmusers})
+      const us = rmusers.map((e , i) => (`${i + 1}: ${e.username}`));
+      console.log('users available:',us)
+
+    } else {
+
+      console.log('Room not found');
+      // Handle the case when the room is not found
+    }
+  });
+});
 // Function to generate a unique room ID
 function generateRoomId() {
   return Math.random().toString(36).substr(2, 6).toUpperCase();
@@ -89,41 +125,7 @@ app.get('/api/data', (req, res) => {
 });
 
 
-// // user websocket
-// setupWebSocket()
-io.on('connection', (socket) => {
-  //console.log(socket.time)
-  console.log('A user connected');
 
-  socket.on('userDisconnect', () => {
-    console.log('User disconnected');
-    // Handle user disconnect, e.g., remove the user from the room
-  });
-
-  socket.on('joinRoom', (data) => {
-    const { roomId, username } =  data;
-    //console.log(username)
-    const room = rooms.find((r) => r.roomId === roomId);
-    //console.log('socket buffer:', data)
-
-    if (room) {
-
-      room.users.push({ username, socketId: socket.id });
-
-      socket.join(roomId);
-      io.to(roomId).emit('userJoined', { username }); // Notify all users in the room
-      const rmusers = room.users
-      io.to(roomId).emit('users',{rmusers})
-      const us = rmusers.map((e , i) => (`${i + 1}: ${e.username}`));
-      console.log('users available:',us)
-
-    } else {
-
-      console.log('Room not found');
-      // Handle the case when the room is not found
-    }
-  });
-});
  
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
