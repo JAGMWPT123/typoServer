@@ -3,7 +3,7 @@
     {
       "src": "/(.*)",
       "dest": "/server.js",
-      "methods": ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+      "methods": ["GET","HEAD","PUT","PATCH","POST","DELETE"],
       "headers": { "Access-Control-Allow-Origrn": "*" }
     }
   ],
