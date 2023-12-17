@@ -13,8 +13,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: 'https://typo-tester-six.vercel.app/', // Replace with the origin of your React application
-    methods: ['GET', 'POST'],
-    credentials: true,
+    methods: ['GET', 'POST']
   },
 });
 const PORT = 5000; // Choose a suitable port
