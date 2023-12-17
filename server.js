@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const http = require('node:http');
+const http = require('node:https');
 //import http from 'node:http';
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
@@ -38,7 +38,7 @@ const corsOptions = {
   credentials: true,
   optionsSuccessStatus: 204,
 };
-app.use(cors); // Enable CORS for all routes
+app.use(cors({origin : '*'})); // Enable CORS for all routes
 
 const rooms = []; // Array to store room objects
 
