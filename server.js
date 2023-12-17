@@ -21,7 +21,7 @@ const PORT = 5000; // Choose a suitable port
 
 app.use(bodyParser.json());
 const corsOptions = {
-  origin: 'https://typo-tester-six.vercel.app/', // Replace with the origin of your React application
+  origin: 'https://typo-tester-phi.vercel.app/', // Replace with the origin of your React application
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   //credentials: true,
   optionsSuccessStatus: 204,
