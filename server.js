@@ -12,17 +12,18 @@ const server = http.createServer(app);
 //const { io, updateChallengeState, userJoin } = setupWebSocket(server);
 const io = new Server(server, {
   cors: {
-    origin: 'https://vercel.com/marwans-projects-89c0b6a9/typo-tester/Dc9WEk2uRA7MTqYhEksc2sfpRPGk', // Replace with the origin of your React application
-    methods: ['GET', 'POST'],
+    origin: true, // Replace with the origin of your React application
+    methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
+    credentials: true,
   },
 });
 const PORT = 5000; // Choose a suitable port
 
 app.use(bodyParser.json());
 const corsOptions = {
-  origin: 'https://vercel.com/marwans-projects-89c0b6a9/typo-tester/Dc9WEk2uRA7MTqYhEksc2sfpRPGk', // Replace with the origin of your React application
+  origin: 'https://typo-tester-six.vercel.app/', // Replace with the origin of your React application
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
+  //credentials: true,
   optionsSuccessStatus: 204,
 };
 app.use(cors(corsOptions)); // Enable CORS for all routes
