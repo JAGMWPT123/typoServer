@@ -6,10 +6,10 @@ const http = require('node:http');
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
 const app = express();
-//const server = http.createServer(app);
+const server = http.createServer(app);
 
 // Create a local server to receive data from
-const server = http.createServer();
+// const server = http.createServer();
 
 // Listen to the request event
 // server.on('request', (request, res) => {
@@ -121,7 +121,7 @@ io.on('connection', (socket) => {
   });
 });
  
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 
 });
