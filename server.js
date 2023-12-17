@@ -6,18 +6,8 @@ const http = require('node:http');
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
 const app = express();
-const server = http.createServer(app);
+const server = http(app);
 
-// Create a local server to receive data from
-// const server = http.createServer();
-
-// Listen to the request event
-// server.on('request', (request, res) => {
-//   res.writeHead(200, { 'Content-Type': 'application/json' });
-//   res.end(JSON.stringify({
-//     data: 'Hello World!',
-//   }));
-// });
 
 //const socket = io(`${process.env.VERCEL_URL}`, { transports: ['websocket'] });
 
@@ -32,12 +22,6 @@ const io = new Server(server, {
 const PORT = 5000; // Choose a suitable port
 
 app.use(bodyParser.json());
-const corsOptions = {
-  origin: 'https://typo-tester-six.vercel.app/', // Replace with the origin of your React application
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
 app.use(cors({origin : '*'})); // Enable CORS for all routes
 
 const rooms = []; // Array to store room objects
