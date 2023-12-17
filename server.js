@@ -3,11 +3,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('node:http');
 //import http from 'node:http';
+const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
 const app = express();
 const server = http.createServer(app);
-
-const { Server } = require('socket.io').listen(5000); 
 
 // Create a local server to receive data from
 // const server = http.createServer();
@@ -48,7 +47,11 @@ function generateRoomId() {
 }
 
 // // Define a simple API route
-
+// add this
+app.get('/socket.io/socket.io.js', (req, res) => {
+  res.sendFile(__dirname + '/node_modules/socket.io/client-dist/socket.io.js');
+});
+///
 
 app.get('/api/create-room', (req, res) => {
   // Replace this with your actual data logic
