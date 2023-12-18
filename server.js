@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: 'https://typo-tester-phi.vercel.app/', // Replace with the origin of your React application
-    methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"]
+    methods: ["GET","HEAD","PUT","PATCH","POST","DELETE" ]
   },
   allowEIO3: true,
 });
