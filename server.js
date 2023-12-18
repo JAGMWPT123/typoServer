@@ -1,18 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const http = require('node:http');
+const { createServer } = require('https');
 //import http from 'node:http';
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
 const app = express();
-const server = http.createServer(app);
+const httpServer = createServer(app);
 
 
 //const socket = io(`${process.env.VERCEL_URL}`, { transports: ['websocket'] });
 
 //const { io, updateChallengeState, userJoin } = setupWebSocket(server);
-const io = new Server(server, {
+const io = new Server(httpServer, {
   cors: {
     origin: 'https://typo-tester-phi.vercel.app/', // Replace with the origin of your React application
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE" ]
