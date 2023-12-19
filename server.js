@@ -22,7 +22,11 @@ const io = new Server(httpServer, {
 
 app.use(bodyParser.json());
 app.use(cors({origin : 'https://typo-tester-phi.vercel.app'})); // Enable CORS for all routes
-
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", true );
+  next();
+});
 const PORT = 5000; // Choose a suitable port
 
 const rooms = []; // Array to store room objects
