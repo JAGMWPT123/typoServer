@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { createServer } = require('http');
+const { createServer } = require('https');
 //import http from 'node:http';
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
@@ -21,7 +21,7 @@ const io = new Server(httpServer, {
 });
 
 app.use(bodyParser.json());
-const whitelist = ['http://localhost:5000', 'https://typo-tester-phi.vercel.app'];
+const whitelist = ['https://typo-tester-phi.vercel.app'];
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
