@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { createServer } = require('https');
+const { createServer } = require('http');
 //import http from 'node:http';
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
@@ -14,27 +14,15 @@ const httpServer = createServer(app);
 //const { io, updateChallengeState, userJoin } = setupWebSocket(server);
 const io = new Server(httpServer, {
   cors: {
-   allowRequest: (req, callback) => {
-      const noOriginHeader = req.headers.origin === undefined;
-      callback(null, noOriginHeader); // only allow requests without 'origin' header
-    }
+    origin: 'https://typo-tester-phi.vercel.app', // Replace with the origin of your React application
+    methods: ["GET","HEAD","PUT","PATCH","POST","DELETE" ]
   },
   allowEIO3: true,
 });
 
 app.use(bodyParser.json());
-const whitelist = ['https://typo-tester-phi.vercel.app'];
-const corsOptions = {
-  credentials: true, // This is important.
-  origin: (origin, callback) => {
-    if(whitelist.includes(origin))
-      return callback(null, true)
+app.use(cors({origin : 'https://typo-tester-phi.vercel.app'})); // Enable CORS for all routes
 
-      callback(new Error('Not allowed by CORS'));
-  }
-}
-
-app.use(cors(corsOptions));
 const PORT = 5000; // Choose a suitable port
 
 const rooms = []; // Array to store room objects
