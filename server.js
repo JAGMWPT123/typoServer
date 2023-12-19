@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { createServer } = require('https');
+const { createServer } = require('http');
 //import http from 'node:http';
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
@@ -14,15 +14,16 @@ const httpServer = createServer(app);
 //const { io, updateChallengeState, userJoin } = setupWebSocket(server);
 const io = new Server(httpServer, {
   cors: {
-    origin: 'https://typo-tester-phi.vercel.app/', // Replace with the origin of your React application
+    origin: 'https://typo-tester-phi.vercel.app', // Replace with the origin of your React application
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE" ]
   },
   allowEIO3: true,
 });
-const PORT = 5000; // Choose a suitable port
 
 app.use(bodyParser.json());
-app.use(cors({origin : '*'})); // Enable CORS for all routes
+app.use(cors({origin : 'https://typo-tester-phi.vercel.app'})); // Enable CORS for all routes
+
+const PORT = 5000; // Choose a suitable port
 
 const rooms = []; // Array to store room objects
 
@@ -100,6 +101,8 @@ app.get('/', (req, res) => {
   // Replace this with your actual data logic
   const data = { message: 'Server says hello' };
   console.log(data)
+  let numOfClients = io.engine.clientsCount;
+console.log("Number of connections:" + numOfClients);
   res.json(data);
 });
 
@@ -113,7 +116,7 @@ app.get('/api/data', (req, res) => {
 
 
  
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 
 });
