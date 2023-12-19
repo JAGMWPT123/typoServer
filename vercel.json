@@ -4,7 +4,7 @@
       "src": "/(.*)",
       "dest": "/server.js",
       "methods": ["GET","HEAD","PUT","PATCH","POST","DELETE"],
-      "headers": { "Access-Control-Allow-Origrn": true }
+      "headers": { "Access-Control-Allow-Origrn": "*" }
     }
   ],
   "builds": [{ "src": "/*.js", "use": "@vercel/node" }]

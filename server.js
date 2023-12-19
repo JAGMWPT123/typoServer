@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { createServer } = require('https');
+const { createServer } = require('node:https');
 //import http from 'node:http';
 const { Server } = require('socket.io');
 //const { setupWebSocket } = require('./socket.cjs');
@@ -17,11 +17,11 @@ const io = new Server(httpServer, {
     origin: 'https://typo-tester-phi.vercel.app', // Replace with the origin of your React application
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE" ]
   },
-  allowEIO3: true,
+  //allowEIO3: true,
 });
 
 app.use(bodyParser.json());
-app.use(cors({origin : 'https://typo-tester-phi.vercel.app'})); // Enable CORS for all routes
+app.use(cors()); // Enable CORS for all routes
 
 const PORT = 5000; // Choose a suitable port
 
