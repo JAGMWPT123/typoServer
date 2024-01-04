@@ -6,3 +6,6 @@ this is a basic websocket server for the typotester website , it handles the con
 - push the repo and go to your glitch.com account
 - on glitch make a new project and import this repo from your github to glitch
 - on glitch open the terminal of you project and run npm install
+- then npm start and your server is live
+- okay on the project page click on share and a window will pop-up copy the live site url
+- 
