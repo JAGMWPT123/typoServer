@@ -8,4 +8,4 @@ this is a basic websocket server for the typotester website , it handles the con
 - on glitch open the terminal of you project and run npm install
 - then npm start and your server is live
 - okay on the project page click on share and a window will pop-up copy the live site url
-- 
+- add this live url to your typotester's app.jsx and api's socketmodule.cjs code
